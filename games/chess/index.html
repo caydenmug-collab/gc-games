@@ -1,0 +1,243 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GC Chess</title>
+
+<link rel="stylesheet"
+href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css">
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #090909;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background: #191919;
+    padding: 22px;
+    border-bottom: 2px solid #303030;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+header span {
+    color: #ffc400;
+}
+
+.container {
+    max-width: 900px;
+    margin: 35px auto;
+    padding: 15px;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 240px;
+    gap: 25px;
+    align-items: start;
+}
+
+#board {
+    width: 100%;
+}
+
+.panel {
+    background: #191919;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 18px;
+}
+
+.panel h2 {
+    color: #ffc400;
+    font-size: 18px;
+}
+
+#status {
+    margin: 15px 0;
+    line-height: 1.5;
+}
+
+button {
+    background: #ffc400;
+    color: black;
+    border: none;
+    padding: 12px;
+    border-radius: 7px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: #e5b000;
+}
+
+#history {
+    max-height: 220px;
+    overflow-y: auto;
+    color: #ccc;
+    line-height: 1.8;
+}
+
+.back {
+    color: #ffc400;
+    display: inline-block;
+    margin-bottom: 20px;
+    text-decoration: none;
+}
+
+@media(max-width: 700px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+
+    .container {
+        margin: 15px auto;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>GC <span>CHESS</span></header>
+
+<div class="container">
+
+<a class="back" href="../../index.html">
+← BACK TO GC GAMES
+</a>
+
+<div class="layout">
+
+<div id="board"></div>
+
+<div class="panel">
+    <h2>CHESS</h2>
+
+    <p id="status">White to move</p>
+
+    <button onclick="newGame()">NEW GAME</button>
+    <button onclick="undoMove()">UNDO MOVE</button>
+    <button onclick="flipBoard()">FLIP BOARD</button>
+
+    <h2>MOVE HISTORY</h2>
+    <div id="history">No moves yet.</div>
+</div>
+
+</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+
+<script>
+const game = new Chess();
+
+let board = null;
+
+function updateStatus() {
+    let message = game.turn() === "w"
+        ? "White to move"
+        : "Black to move";
+
+    if (game.in_checkmate()) {
+        message = "CHECKMATE! " +
+            (game.turn() === "w" ? "Black" : "White") +
+            " wins!";
+    } else if (game.in_draw()) {
+        message = "Draw!";
+    } else if (game.in_check()) {
+        message += " — CHECK!";
+    }
+
+    document.getElementById("status").textContent = message;
+
+    const history = game.history();
+
+    document.getElementById("history").innerHTML =
+        history.length
+        ? history.map((move, i) => {
+            if (i % 2 === 0) {
+                return "<br>" + (Math.floor(i / 2) + 1) + ". " + move;
+            }
+            return " " + move;
+        }).join("")
+        : "No moves yet.";
+}
+
+function onDragStart(source, piece) {
+    if (game.game_over()) return false;
+
+    if (
+        (game.turn() === "w" && piece.startsWith("b")) ||
+        (game.turn() === "b" && piece.startsWith("w"))
+    ) {
+        return false;
+    }
+}
+
+function onDrop(source, target) {
+    const move = game.move({
+        from: source,
+        to: target,
+        promotion: "q"
+    });
+
+    if (move === null) return "snapback";
+
+    updateStatus();
+}
+
+function onSnapEnd() {
+    board.position(game.fen());
+}
+
+board = Chessboard("board", {
+    draggable: true,
+    position: "start",
+    onDragStart: onDragStart,
+    onDrop: onDrop,
+    onSnapEnd: onSnapEnd
+});
+
+function newGame() {
+    game.reset();
+    board.start();
+    updateStatus();
+}
+
+function undoMove() {
+    game.undo();
+    board.position(game.fen());
+    updateStatus();
+}
+
+function flipBoard() {
+    board.flip();
+}
+
+updateStatus();
+
+window.addEventListener("resize", function() {
+    board.resize();
+});
+</script>
+
+</body>
+</html>
