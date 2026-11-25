@@ -1,4 +1,8 @@
 
+/* =========================
+   GC GAMES - MAIN STYLES
+========================= */
+
 * {
     margin: 0;
     padding: 0;
@@ -9,10 +13,12 @@ body {
     background: #090909;
     color: white;
     font-family: Arial, sans-serif;
-    padding-bottom: 90px;
+    padding-bottom: 100px;
 }
 
-/* TOP NAVIGATION */
+/* =========================
+   TOP NAVIGATION
+========================= */
 
 .navbar {
     height: 90px;
@@ -53,6 +59,11 @@ nav a {
     justify-content: center;
     align-items: center;
     border-radius: 17px;
+    transition: 0.2s;
+}
+
+nav a:hover {
+    background: #303030;
 }
 
 nav a.active {
@@ -60,13 +71,25 @@ nav a.active {
     color: black;
 }
 
-/* MAIN CONTENT */
+/* =========================
+   MAIN CONTENT
+========================= */
 
 main {
     max-width: 1200px;
     margin: auto;
     padding: 35px;
 }
+
+h2 {
+    font-size: 21px;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+}
+
+/* =========================
+   SEARCH BAR
+========================= */
 
 .search {
     margin-bottom: 30px;
@@ -87,29 +110,29 @@ main {
     border-color: #ffc400;
 }
 
-h2 {
-    font-size: 21px;
-    margin-bottom: 25px;
-    letter-spacing: 1px;
-}
-
-/* GAME GRID */
+/* =========================
+   GAME GRID
+========================= */
 
 .game-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 45px 25px;
 }
 
 .game-card {
     min-width: 0;
     cursor: pointer;
+    text-decoration: none;
+    color: white;
+    display: block;
 }
 
 .game-card img {
     width: 100%;
     aspect-ratio: 1 / 1;
     object-fit: cover;
+    background: #1b1b1b;
     border: 3px solid #303030;
     border-radius: 22px;
     display: block;
@@ -122,13 +145,67 @@ h2 {
 }
 
 .game-card h3 {
+    color: white;
     font-size: 17px;
     font-weight: 900;
     margin-top: 17px;
     line-height: 1.4;
 }
 
-/* BOTTOM NAVIGATION */
+/* =========================
+   GAME PLAYER PAGE
+========================= */
+
+.player-page {
+    max-width: 1100px;
+    margin: auto;
+    padding: 25px;
+}
+
+.back-button {
+    display: inline-block;
+    color: #ffc400;
+    text-decoration: none;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+
+.game-window {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #181818;
+    border: 2px solid #333;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.game-window h2 {
+    color: #ffc400;
+}
+
+.fullscreen-button {
+    background: #ffc400;
+    color: black;
+    border: none;
+    padding: 13px 22px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.fullscreen-button:hover {
+    background: #e5b000;
+}
+
+/* =========================
+   BOTTOM NAVIGATION
+========================= */
 
 .bottom-nav {
     position: fixed;
@@ -156,7 +233,9 @@ h2 {
     font-size: 18px;
 }
 
-/* MOBILE DESIGN */
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
 
 @media (max-width: 700px) {
 
@@ -200,5 +279,29 @@ h2 {
     .game-card h3 {
         font-size: 15px;
         margin-top: 15px;
+    }
+
+    .player-page {
+        padding: 20px 4.5%;
+    }
+}
+
+/* =========================
+   SMALL SCREENS
+========================= */
+
+@media (max-width: 380px) {
+
+    .logo {
+        font-size: 15px;
+    }
+
+    nav a {
+        width: 36px;
+        font-size: 18px;
+    }
+
+    .game-grid {
+        gap: 35px 12px;
     }
 }
