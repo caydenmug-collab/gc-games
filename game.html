@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GC Games - Play</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .player-page {
+            max-width: 1100px;
+            margin: auto;
+            padding: 25px;
+        }
+
+        .back-button {
+            display: inline-block;
+            color: #ffc400;
+            text-decoration: none;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+
+        .game-window {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #181818;
+            border: 2px solid #333;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .game-window h2 {
+            color: #ffc400;
+        }
+
+        .fullscreen-button {
+            background: #ffc400;
+            color: black;
+            border: none;
+            padding: 13px 22px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="logo">GC<span>GAMES</span></div>
+    <nav>
+        <a href="index.html">⌂</a>
+        <a href="index.html" class="active">🎮</a>
+    </nav>
+</header>
+
+<main class="player-page">
+
+    <a href="index.html" class="back-button">
+        ← BACK TO GAMES
+    </a>
+
+    <h2 id="gameTitle">GAME PLAYER</h2>
+
+    <div class="game-window" id="gameWindow">
+        <div>
+            <h2>GC GAMES</h2>
+            <p>Your game will appear here.</p>
+            <p style="color:#888; margin-top:10px;">
+                Game embed coming soon.
+            </p>
+        </div>
+    </div>
+
+    <button class="fullscreen-button"
+        onclick="document.getElementById('gameWindow').requestFullscreen()">
+        FULLSCREEN
+    </button>
+
+</main>
+
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const title = params.get("title") || "GAME PLAYER";
+
+    document.getElementById("gameTitle").textContent = title;
+    document.title = "GC Games - " + title;
+</script>
+
+</body>
+</html>
