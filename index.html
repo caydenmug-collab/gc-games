@@ -1,62 +1,112 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GC Games</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
-<header class="navbar">
-    <div class="logo">GC<span>GAMES</span></div>
-    <nav>
-        <a href="index.html">⌂</a>
-        <a href="#">●</a>
-        <a href="index.html" class="active">🎮</a>
-        <a href="#">♫</a>
-        <a href="settings.html">⚙</a>
-        <a href="#">◉</a>
-    </nav>
-</header>
+    <!-- NAVIGATION -->
+    <header class="navbar">
+        <div class="logo">GC<span>GAMES</span></div>
 
-<main>
-    <div class="search">
-        <input type="text" id="gameSearch" placeholder="Search games...">
-    </div>
+        <nav>
+            <a href="index.html">⌂</a>
+            <a href="#">●</a>
+            <a href="index.html" class="active">🎮</a>
+            <a href="#">♫</a>
+            <a href="settings.html">⚙</a>
+            <a href="#">◉</a>
+        </nav>
+    </header>
 
-    <h2>ALL GAMES</h2>
+    <!-- MAIN -->
+    <main>
 
-    <section class="game-grid" id="gameGrid">
+        <div class="search">
+            <input
+                type="text"
+                id="gameSearch"
+                placeholder="Search games..."
+                autocomplete="off"
+            >
+        </div>
 
-        <a class="game-card" href="game.html?title=Game%20One">
-            <img src="images/games/game1.jpg" alt="Game One">
-            <h3>GAME ONE</h3>
-        </a>
+        <h2>ALL GAMES</h2>
 
-        <a class="game-card" href="game.html?title=Game%20Two">
-            <img src="images/games/game2.jpg" alt="Game Two">
-            <h3>GAME TWO</h3>
-        </a>
+        <section class="game-grid" id="gameGrid">
 
-        <a class="game-card" href="game.html?title=Game%20Three">
-            <img src="images/games/game3.jpg" alt="Game Three">
-            <h3>GAME THREE</h3>
-        </a>
+            <!-- CHESS -->
+            <a class="game-card" href="games/chess/index.html">
+                <div class="game-image">
+                    <img src="images/games/chess.jpg" alt="Chess">
+                </div>
+                <h3>CHESS</h3>
+            </a>
 
-        <a class="game-card" href="game.html?title=Game%20Four">
-            <img src="images/games/game4.jpg" alt="Game Four">
-            <h3>GAME FOUR</h3>
-        </a>
+            <!-- COMING SOON 1 -->
+            <div class="game-card coming-soon">
+                <div class="game-image">
+                    <div class="coming-soon-content">
+                        <span>🔒</span>
+                        <p>COMING SOON</p>
+                    </div>
+                </div>
+                <h3>COMING SOON</h3>
+            </div>
 
-    </section>
-</main>
+            <!-- COMING SOON 2 -->
+            <div class="game-card coming-soon">
+                <div class="game-image">
+                    <div class="coming-soon-content">
+                        <span>🔒</span>
+                        <p>COMING SOON</p>
+                    </div>
+                </div>
+                <h3>COMING SOON</h3>
+            </div>
 
-<footer class="bottom-nav">
-    <div class="footer-logo">GC</div>
-</footer>
+            <!-- COMING SOON 3 -->
+            <div class="game-card coming-soon">
+                <div class="game-image">
+                    <div class="coming-soon-content">
+                        <span>🔒</span>
+                        <p>COMING SOON</p>
+                    </div>
+                </div>
+                <h3>COMING SOON</h3>
+            </div>
 
-<script src="js/script.js"></script>
+            <!-- COMING SOON 4 -->
+            <div class="game-card coming-soon">
+                <div class="game-image">
+                    <div class="coming-soon-content">
+                        <span>🔒</span>
+                        <p>COMING SOON</p>
+                    </div>
+                </div>
+                <h3>COMING SOON</h3>
+            </div>
+
+        </section>
+
+        <p id="noResults" style="display:none; color:#888; margin-top:30px;">
+            No games found.
+        </p>
+
+    </main>
+
+    <!-- BOTTOM BAR -->
+    <footer class="bottom-nav">
+        <div class="footer-logo">GC</div>
+    </footer>
+
+    <script src="js/script.js"></script>
 
 </body>
 </html>
