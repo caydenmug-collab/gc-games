@@ -305,3 +305,32 @@ h2 {
         gap: 35px 12px;
     }
 }
+
+/* =========================
+   SETTINGS PAGE
+========================= */
+
+.settings-section {
+    background: #191919;
+    border: 1px solid #303030;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+.settings-section h3 {
+    color: #ffc400;
+    font-size: 17px;
+    margin-bottom: 15px;
+}
+
+.settings-section p {
+    color: #cccccc;
+    font-size: 15px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.settings-section p:last-child {
+    margin-bottom: 0;
+}
